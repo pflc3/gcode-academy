@@ -1,15 +1,10 @@
 import Foundation
-
+struct CurrentUser {
+    static let user = User(name: "Preview Student")
+}
 // Contains sample data for development and testing
 struct MockData {
     // Sample user
-    static let currentUser = User(
-        name: "Ada Lovelace",
-        bio: "High school beginner learning iOS development with Swift",
-        lessonsCompleted: 5,
-        totalLessons: LessonData.allLessons.count,
-        achievements: achievements
-    )
     
     // Sample achievements
     static let achievements: [Achievement] = [

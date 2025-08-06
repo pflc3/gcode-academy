@@ -38,6 +38,7 @@ struct LessonDetailView: View {
     }
     
     var body: some View {
+        
         VStack(spacing: 0) {
             // Custom top bar
             TopBar(title: lesson.title)
@@ -49,7 +50,7 @@ struct LessonDetailView: View {
                     LessonHeaderSection(
                         lesson: lesson,
                         progressPercentage: progressPercentage
-                    )
+                    ).environmentObject(CurrentUser.user)
                     
                     // Video section
                     LessonVideoSection(
@@ -124,6 +125,6 @@ struct CompletionHintView: View {
 
 #Preview {
     NavigationStack {
-        LessonDetailView(lesson: LessonData.dataTypesLesson)
+        LessonDetailView(lesson: LessonData.allLessons[1])
     }
 }

@@ -33,7 +33,7 @@ struct LessonCard: View {
                         
                         if isUnlocked {
                             // Show number if unlocked
-                            Text("\(index)")
+                            Text("\(index+1)")
                                 .font(.bodyMedium.bold())
                                 .foregroundColor(.white)
                         } else {

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ProfileStatsSection: View {
     // the user model containing progress information
-    let user: User
+    @EnvironmentObject var user: User
     
     var body: some View {
         VStack(spacing: 0) {
@@ -122,5 +122,5 @@ struct ProfileStatsSection: View {
 }
 
 #Preview {
-    ProfileStatsSection(user: MockData.currentUser)
+    ProfileStatsSection().environmentObject(CurrentUser.user)
 }

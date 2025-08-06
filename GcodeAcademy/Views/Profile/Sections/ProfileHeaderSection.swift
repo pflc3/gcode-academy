@@ -3,7 +3,7 @@ import SwiftUI
 // Displays the user's avatar, name, and bio
 struct ProfileHeaderSection: View {
     // The user model to display
-    let user: User
+    @EnvironmentObject var user: User
     // Binding to control edit profile sheet
     @Binding var showingEditProfile: Bool
     
@@ -64,5 +64,5 @@ struct ProfileHeaderSection: View {
 }
 
 #Preview {
-    ProfileHeaderSection(user: MockData.currentUser, showingEditProfile: .constant(false))
+    ProfileHeaderSection(showingEditProfile: .constant(false)).environmentObject(CurrentUser.user)
 }

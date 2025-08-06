@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeHeaderSection: View {
-    var user: User
+    @EnvironmentObject var user: User
     var lessons: [Lesson]
     
     var body: some View {
@@ -37,5 +37,5 @@ struct HomeHeaderSection: View {
 }
 
 #Preview {
-    HomeHeaderSection(user: MockData.currentUser, lessons: LessonData.allLessons)
+    HomeHeaderSection(lessons: LessonData.allLessons).environmentObject(CurrentUser.user)
 }

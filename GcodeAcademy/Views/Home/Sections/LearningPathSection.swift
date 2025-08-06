@@ -2,17 +2,31 @@ import SwiftUI
 
 struct LearningPathSection: View {
     let lessons: [Lesson]
-    let user: User
+    @EnvironmentObject var user: User
     var onStartLesson: (Lesson) -> Void
     
     // Determine unlocked lessons based on user progress
     // Current lesson (next one to complete) is also unlocked
     var unlockedCount: Int {
-        return min(user.lessonsCompleted + 1, lessons.count)
+        user.lessonsCompleted+1
     }
     
     var body: some View {
         VStack {
+            Spacer()
+                .frame(height: 70)
+            
+            Text("\(user.lessonsCompleted)")
+                .font(.largeTitle)
+                .bold()
+            
+            Text("\(unlockedCount)")
+                .font(.largeTitle)
+                .bold()
+            
+            Spacer()
+                .frame(height: 70)
+            
             ForEach(lessons.indices, id: \.self) { index in
                 let lesson = lessons[index]
                 let isEven = index % 2 == 0
@@ -26,14 +40,14 @@ struct LearningPathSection: View {
                         LessonConnectorLine(
                             isEven: isEven,
                             // Only color the connector if the next lesson is also unlocked
-                            isUnlocked: isUnlocked && index+1 < unlockedCount
+                            isUnlocked: isUnlocked && index+1 <= unlockedCount
                         )
                     }
                     
                     // Position cards on alternating sides
                     LessonCard(
                         lesson: lesson,
-                        index: index + 1,
+                        index: index,
                         isUnlocked: isUnlocked,
                         isNextLesson: index == user.lessonsCompleted,
                         onStartLesson: onStartLesson
@@ -68,7 +82,6 @@ struct LearningPathSection: View {
             LessonData.binaryLesson,
             LessonData.dataTypesLesson,
         ],
-        user: MockData.currentUser,
         onStartLesson: { _ in /* Preview only */ }
-    )
+    ).environmentObject(CurrentUser.user)
 }
