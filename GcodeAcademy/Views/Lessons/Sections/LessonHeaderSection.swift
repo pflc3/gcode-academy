@@ -60,12 +60,11 @@ struct LessonHeaderSection: View {
                             .font(.bodySmall)
                             .foregroundColor(.accentApp)
                             .onAppear {
-                                guard isCompleted,
-                                      let currentIndex = LessonData.allLessons.firstIndex(of: lesson),
-                                      currentIndex == user.lessonsCompleted else { return }
+                                if isCompleted && (LessonData.allLessons.firstIndex(of: lesson) == user.lessonsCompleted) {
+                                    user.addLesson()
+                                    print("Lesson completed: \(user.lessonsCompleted)")
+                                }
 
-                                user.addLesson()
-                                print("Lessons completed: \(user.lessonsCompleted)")
                             }
                     } else {
                         // Mini progress circle
@@ -100,7 +99,7 @@ struct LessonHeaderSection: View {
 #Preview {
     VStack(spacing: 20) {
         LessonHeaderSection(
-            lesson: LessonData.allLessons[3],
+            lesson: LessonData.allLessons[0],
             progressPercentage: 1.0
         ).environmentObject(CurrentUser.user)
         

@@ -8,12 +8,6 @@ struct LessonData {
         dataTypesLesson,
         arraysListsLesson,
         functionsLesson,
-        
-        // Duplicates
-        binaryLesson,
-        dataTypesLesson,
-        arraysListsLesson,
-        functionsLesson
     ]
     
     // Individual lesson definitions

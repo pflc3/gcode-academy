@@ -13,19 +13,6 @@ struct LearningPathSection: View {
     
     var body: some View {
         VStack {
-            Spacer()
-                .frame(height: 70)
-            
-            Text("\(user.lessonsCompleted)")
-                .font(.largeTitle)
-                .bold()
-            
-            Text("\(unlockedCount)")
-                .font(.largeTitle)
-                .bold()
-            
-            Spacer()
-                .frame(height: 70)
             
             ForEach(lessons.indices, id: \.self) { index in
                 let lesson = lessons[index]
@@ -40,7 +27,7 @@ struct LearningPathSection: View {
                         LessonConnectorLine(
                             isEven: isEven,
                             // Only color the connector if the next lesson is also unlocked
-                            isUnlocked: isUnlocked && index+1 <= unlockedCount
+                            isUnlocked: isUnlocked && index < unlockedCount+1
                         )
                     }
                     

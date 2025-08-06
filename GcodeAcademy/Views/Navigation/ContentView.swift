@@ -44,7 +44,7 @@ struct ContentView: View {
                     
                     if selectedTab == 3 {
                         NavigationView {
-                            ProfileView()
+                            ProfileView().environmentObject(CurrentUser.user)
                         }
                         .transition(.opacity)
                     }
